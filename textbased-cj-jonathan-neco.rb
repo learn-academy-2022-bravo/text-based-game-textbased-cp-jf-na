@@ -73,31 +73,42 @@ p "#{userchoice_decider3(user_choice3)}"
 
 p "1) Thank you so much for the help"
 p "2) I don't need help from some dusty old lumberjack, who also might be a bear or something"
+if user_choice1 != 1
+    p "3) You use your knife to attack the stranger. 'Take this you dusty, old lumberjack."
+end
     user_choice4 = gets.chomp.to_i
 
-def userchoice_decider4 user_choice4
-    if user_choice4 == 1
+user_score = user_choice2 + user_choice3
+
+def userchoice_decider4 num, pc_choice4
+    if num == 4 and pc_choice4 == 1
+        "You're pretty, rude for a nude dude. PRESS ENTER TO CONTIUE..."
+    elsif pc_choice4 == 1 
         'The Lumberjack, gives you some clothes and safely guides you back to civilization... PRESS ENTER TO CONTIUE...'
     else
-        "DON'T CALL ME DUSTY, I am a ManBear." 
+        "DON'T CALL ME DUSTY, I am a ManBear. (The ManBear appears to be enraged after your comment, and turns into a massive bear.)" 
     end
 end
 
-p userchoice_decider4(user_choice4)
+p userchoice_decider4(user_score, user_choice4)
 
 end_of_game = gets.chomp
 
-user_score = user_choice2 + user_choice3 + user_choice4
+user_final_score = user_choice2 + user_choice3 + user_choice4
 
-def win_or_lose num
-    if num <= 4
-        'YOU WIN: You are guided out of the woods.'
+def win_or_lose num, uc1, uc2, uc3, uc4
+    if uc1 != 1 and uc4 == 3
+        "GAME OVER: You're an idiot for trying to attack a bear... especially naked. Oh well, now you're easier to eat for the bear."
+    elsif uc2 == uc3 and uc4 and uc2 == 1
+        "YOU WIN: Thanks to your friendly character, the bear takes pitty on you and gives you some supplies to make it back to civilization, which includes food, clean water, and a radical flannel."
+    elsif num <= 4
+        'YOU WIN: You are guided out of the woods by the lumberjack.'
     else
         "GAME OVER: The lumberjack was actually a bear in disguise and now you have gotten yourself eaten for being so rude to the fine gentleman Bear."
     end
 end
 
-p win_or_lose(user_score)
+p win_or_lose(user_final_score, user_choice1, user_choice2, user_choice3, user_choice4)
 
 
 
